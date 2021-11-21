@@ -1,12 +1,10 @@
 package com.intivepatronat.Ticket.model;
 
-
 import javax.persistence.Entity;
 
 @Entity
-public class User {
-    private long id;
-    private String name;
+public class Reservation {
 
-
+    private long userId;
+    private long parkingSpaceId;
 }
