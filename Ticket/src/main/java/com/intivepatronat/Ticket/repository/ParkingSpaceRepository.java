@@ -1,8 +1,11 @@
 package com.intivepatronat.Ticket.repository;
 
 import com.intivepatronat.Ticket.model.ParkingSpace;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ParkingSpaceRepository extends JpaRepository <ParkingSpace, Long> {
+import java.util.Optional;
 
+public interface ParkingSpaceRepository extends JpaRepository <ParkingSpace, Long> {
+    Optional<ParkingSpace> findByNumber(Long number);
 }

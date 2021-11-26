@@ -1,20 +1,18 @@
 package com.intivepatronat.Ticket.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table
 public class ParkingSpace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private int number;
-    private int level;
+    private long number;
+    private long level;
     private boolean impaired;
 
-    public ParkingSpace(int number, int level, boolean impaired) {
+    public ParkingSpace(long number, long level, boolean impaired) {
         this.number = number;
         this.level = level;
         this.impaired = impaired;
@@ -24,11 +22,11 @@ public class ParkingSpace {
         return id;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 
-    public int getLevel() {
+    public long getLevel() {
         return level;
     }
 

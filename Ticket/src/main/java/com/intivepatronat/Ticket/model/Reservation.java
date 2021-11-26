@@ -1,11 +1,9 @@
 package com.intivepatronat.Ticket.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +14,9 @@ public class Reservation {
     public Reservation(long userId, long parkingSpaceId) {
         this.userId = userId;
         this.parkingSpaceId = parkingSpaceId;
+    }
+
+    public Reservation(Long parkingSpaceNumber) {
     }
 
     public long getId() {
