@@ -1,6 +1,9 @@
 package com.intivepatronat.Ticket.service;
 
 import com.intivepatronat.Ticket.dto.ReservationDTO;
+import com.intivepatronat.Ticket.dto.ReservationDetailsDTO;
+import com.intivepatronat.Ticket.dto.UserDTO;
+import com.intivepatronat.Ticket.mapper.ReservationMapper;
 import com.intivepatronat.Ticket.model.ParkingSpace;
 import com.intivepatronat.Ticket.model.Reservation;
 import com.intivepatronat.Ticket.model.User;
@@ -10,6 +13,7 @@ import com.intivepatronat.Ticket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,58 +31,60 @@ public class ReservationService {
 
     public ReservationDTO createReservation(final ReservationDTO reservationDTO) {
 
-        User user = userRepository.findByName(reservationDTO.getUserName()).orElseGet(() ->
+        User user = userRepository.findByName(reservationDTO.getUserName()).orElseThrow(() ->
 
-        {
-            User newUser = new User(reservationDTO.getUserName());
-            userRepository.save(newUser);
-            return newUser;
-        });
+                new IllegalArgumentException("This user was not found in the database"));
 
 
-//        if (user.isEmpty()) {
-//            User newUser = new User(reservationDTO.getUserName());
-//            userRepository.save(newUser);
-//        } else {
-//
-//        }
-        ParkingSpace parkingSpaceNumber = parkingSpaceRepository.findByNumber(reservationDTO.getParkingSpaceNumber()).orElseGet(()
-                ->
-        {
-            ParkingSpace newParkingSpace = new ParkingSpace(reservationDTO.getParkingSpaceNumber(), reservationDTO.getParkingSpaceLevel(), reservationDTO.getParkingSpaceImpaired());
-            parkingSpaceRepository.save(newParkingSpace);
-            return newParkingSpace;
-        });
+        ParkingSpace parkingSpace = parkingSpaceRepository.findByNumberAndLevel(reservationDTO.getParkingSpaceNumber(), reservationDTO.getParkingSpaceLevel()).orElseThrow(() ->
+
+                new IllegalArgumentException("error"));
+
+        Optional<Reservation> reservation = reservationRepository.findByParkingSpace(parkingSpace);
 
 
-//        if (parkingSpaceNumber.isEmpty()) {
-//            ParkingSpace newParkingSpace = new ParkingSpace(reservationDTO.getParkingSpaceNumber(), reservationDTO.getParkingSpaceLevel(), reservationDTO.getParkingSpaceImpaired());
-//            parkingSpaceRepository.save(newParkingSpace);
-//        }
-//
-//        else{
-// tutaj powinien byc blad bo parkingspace jest zajety
-//        }
+        if (reservation.isPresent()) {
+            throw new IllegalArgumentException("This reservation already exists");
+        } else {
 
-        Reservation newReservation = new Reservation(user.getId(), parkingSpaceNumber.getId());
-        reservationRepository.save(newReservation);
-
-
-        //
-
-
+            Reservation newReservation = new Reservation(user, parkingSpace);
+            reservationRepository.save(newReservation);
+        }
         return reservationDTO;
 
 
-//    private User createUser(final UserRegistrationRequestDTO userRegistrationRequestDTO) {
-//        final var userToSave = User.builder()
-//                .role(getRoleByName(UserRole.CANDIDATE))
-//                .status(getStatusByName(UserStatus.ACTIVE))
-//                .gender(getGenderByName(userRegistrationRequestDTO.getGender()))
-//                .technologyGroups(technologyGroupService.getTechnologyGroupsEntitiesByList(
-//                        Optional.ofNullable(userRegistrationRequestDTO.getGroups()).orElse(null)))
-//                .build();
-//        return userMapper.toUserRegistrationEntity(userToSave, userRegistrationRequestDTO);
-//    }
     }
+
+
+    public void removeReservation(final Long reservationId) {
+        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow(() ->
+
+
+                new IllegalArgumentException("There is no such reservation found in the database")
+
+        );
+
+
+        //ParkingSpace parkingSpace = parkingSpaceRepository.findByNumberAndLevel(reservationRemovalDTO.getNumber(), reservationRemovalDTO.getLevel()).orElseThrow(() ->
+
+
+        //new IllegalArgumentException("There is no such combination of parking space number and parking space level/elevation found in the database"));
+
+        reservationRepository.delete(reservation);
+    }
+
+
+    public List<ReservationDetailsDTO> listReservationsByUserName(final String userName) {
+        User user = userRepository.findByName(userName).orElseThrow(() ->
+                new IllegalArgumentException("Cannot find the user")
+        );
+
+        ReservationMapper reservationMapper = new ReservationMapper();
+        List<Reservation> reservations = reservationRepository.findAllByUser(user);
+        return reservationMapper.mapToReservationDetailsDTOs(reservations);
+
+    }
+
+
 }
+

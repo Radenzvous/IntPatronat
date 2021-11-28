@@ -8,12 +8,20 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long userId;
-    private long parkingSpaceId;
 
-    public Reservation(long userId, long parkingSpaceId) {
-        this.userId = userId;
-        this.parkingSpaceId = parkingSpaceId;
+
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+    @OneToOne
+    @JoinColumn(name = "parkingSpaceId")
+    private ParkingSpace parkingSpace;
+
+    public Reservation(){}
+    public Reservation(User user, ParkingSpace parkingSpace) {
+        this.user = user;
+        this.parkingSpace = parkingSpace;
     }
 
     public Reservation(Long parkingSpaceNumber) {
@@ -23,17 +31,21 @@ public class Reservation {
         return id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public long getParkingSpaceId() {
-        return parkingSpaceId;
+    public ParkingSpace getParkingSpace() {
+        return parkingSpace;
     }
 
 
 
-    public void setParkingSpaceId(long parkingSpaceId) {
-        this.parkingSpaceId = parkingSpaceId;
+    public void setParkingSpace(ParkingSpace parkingSpace) {
+        this.parkingSpace = parkingSpace;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

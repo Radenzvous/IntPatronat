@@ -1,20 +1,23 @@
 package com.intivepatronat.Ticket.controller;
 
 import com.intivepatronat.Ticket.dto.ReservationDTO;
+import com.intivepatronat.Ticket.dto.ReservationDetailsDTO;
 import com.intivepatronat.Ticket.service.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.validator.constraints.pl.NIP;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 
 @RestController
 @RequestMapping("/reservation")
 public class ReservationController {
+
+    private final String statusMessageSuccess = "Successfully created the thing";
     private final ReservationService reservationService;
 
     public ReservationController(ReservationService reservationService) {
@@ -28,9 +31,30 @@ public class ReservationController {
         final var response = reservationService.createReservation(userReservationDTO);
         return ResponseEntity.status(CREATED).body(response);
     }
+    @DeleteMapping("/{reservationId}")
+    public ResponseEntity<Void> deleteReservation(
+    @PathVariable
+    final Long reservationId){
+        reservationService.removeReservation(reservationId);
+        return ResponseEntity.status(OK).body(null);
+
+    }
+
+    @GetMapping("/user/{userName}")
+    public ResponseEntity<List<ReservationDetailsDTO>> listReservationsByUserName(
+    @PathVariable
+    final String userName){
+        List <ReservationDetailsDTO> reservations = reservationService.listReservationsByUserName(userName);
+        return ResponseEntity.status(OK).body(reservations);
+
+
+    }
+
 
 
 }
+
+
 
 
 

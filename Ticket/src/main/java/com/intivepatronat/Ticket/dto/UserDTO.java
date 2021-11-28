@@ -3,7 +3,7 @@ package com.intivepatronat.Ticket.dto;
 public class UserDTO {
     private String name;
 
-
+    public UserDTO (){}
     public UserDTO(String name) {
         this.name = name;
     }
