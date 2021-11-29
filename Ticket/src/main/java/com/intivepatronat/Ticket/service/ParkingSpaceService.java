@@ -35,7 +35,7 @@ public class ParkingSpaceService {
 
 
         if (parkingSpace.isPresent()) {
-            throw new IllegalArgumentException("Parking space number and level already exist in the database");
+            throw new ParkingSpaceAlreadyExistsException("Parking space number and level already exist in the database");
         } else {
             ParkingSpace newParkingSpace = new ParkingSpace(parkingSpaceDTO.getNumber(), parkingSpaceDTO.getLevel(), parkingSpaceDTO.getImpaired());
             parkingSpaceRepository.save(newParkingSpace);

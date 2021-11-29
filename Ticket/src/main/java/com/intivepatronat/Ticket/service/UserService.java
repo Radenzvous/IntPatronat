@@ -6,6 +6,7 @@ import com.intivepatronat.Ticket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.Optional;
 
 @Service
@@ -20,35 +21,31 @@ public class UserService {
     public UserDTO createUser(final UserDTO userDTO) {
 
 
-    Optional <User> user = userRepository.findByName(userDTO.getName());
-if (user.isEmpty())
-    {
-        User newUser = new User(userDTO.getName());
-        userRepository.save(newUser);
+        Optional<User> user = userRepository.findByName(userDTO.getName());
+        if (user.isEmpty()) {
+            User newUser = new User(userDTO.getName());
+            userRepository.save(newUser);
 
-    }
-else{
+        } else {
 
-    throw new IllegalArgumentException ("Error - user already exists in the database");
+            throw new UserAlreadyExistsException("Error - user already exists in the database");
         }
 
 
+        return userDTO;
+    }
 
-
-return userDTO;
-}
     public void removeUser(final String userName) {
         User user = userRepository.findByName(userName).orElseThrow(() ->
 
 
-                new IllegalArgumentException("There is no such user found in the database")
+                new UserNotFoundException("There is no such user found in the database")
 
         );
 
 
         userRepository.delete(user);
     }
-
 
 
 }

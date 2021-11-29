@@ -29,22 +29,24 @@ public class ReservationService {
         this.parkingSpaceRepository = parkingSpaceRepository;
     }
 
+
+
     public ReservationDTO createReservation(final ReservationDTO reservationDTO) {
 
         User user = userRepository.findByName(reservationDTO.getUserName()).orElseThrow(() ->
 
-                new IllegalArgumentException("This user was not found in the database"));
+                new ReservationUserNotFoundException("This user was not found in the database"));
 
 
         ParkingSpace parkingSpace = parkingSpaceRepository.findByNumberAndLevel(reservationDTO.getParkingSpaceNumber(), reservationDTO.getParkingSpaceLevel()).orElseThrow(() ->
 
-                new IllegalArgumentException("error"));
+                new ParkingSpaceNotFoundException("Parking space not found in the database"));
 
         Optional<Reservation> reservation = reservationRepository.findByParkingSpace(parkingSpace);
 
 
         if (reservation.isPresent()) {
-            throw new IllegalArgumentException("This reservation already exists");
+            throw new ReservationTakenException("This reservation already exists");
         } else {
 
             Reservation newReservation = new Reservation(user, parkingSpace);
@@ -60,7 +62,7 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(reservationId).orElseThrow(() ->
 
 
-                new IllegalArgumentException("There is no such reservation found in the database")
+                new ReservationNotFoundException("There is no such reservation found in the database")
 
         );
 
@@ -76,7 +78,7 @@ public class ReservationService {
 
     public List<ReservationDetailsDTO> listReservationsByUserName(final String userName) {
         User user = userRepository.findByName(userName).orElseThrow(() ->
-                new IllegalArgumentException("Cannot find the user")
+                new ReservationUserNotFoundException("This user was not found in the database")
         );
 
         ReservationMapper reservationMapper = new ReservationMapper();

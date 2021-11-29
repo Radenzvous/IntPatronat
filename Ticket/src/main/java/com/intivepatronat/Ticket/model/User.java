@@ -2,6 +2,8 @@ package com.intivepatronat.Ticket.model;
 
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 @Entity
 @Table
@@ -10,6 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
 
     public User(){
 

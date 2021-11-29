@@ -3,7 +3,7 @@ package com.intivepatronat.Ticket.controller;
 import com.intivepatronat.Ticket.dto.ReservationDTO;
 import com.intivepatronat.Ticket.dto.ReservationDetailsDTO;
 import com.intivepatronat.Ticket.service.ReservationService;
-import org.hibernate.validator.constraints.pl.NIP;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
