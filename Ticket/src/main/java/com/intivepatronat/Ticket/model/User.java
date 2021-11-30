@@ -2,8 +2,7 @@ package com.intivepatronat.Ticket.model;
 
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+
 
 @Entity
 @Table
@@ -14,7 +13,7 @@ public class User {
     private String name;
 
 
-    public User(){
+    public User() {
 
     }
 

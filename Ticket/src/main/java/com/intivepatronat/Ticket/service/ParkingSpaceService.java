@@ -31,9 +31,6 @@ public class ParkingSpaceService {
         Optional<ParkingSpace> parkingSpace = parkingSpaceRepository.findByNumberAndLevel(parkingSpaceDTO.getNumber(), parkingSpaceDTO.getLevel());
 
 
-        // return newParkingSpace;
-
-
         if (parkingSpace.isPresent()) {
             throw new ParkingSpaceAlreadyExistsException("Parking space number and level already exist in the database");
         } else {
@@ -43,10 +40,10 @@ public class ParkingSpaceService {
         return parkingSpaceDTO;
     }
 
-    public List<ParkingSpaceDTO> listFreeParkingSpaces (){
-        List <ParkingSpace> parkingSpaces = parkingSpaceRepository.findAll();
-        List <ParkingSpace> freeParkingSpaces = parkingSpaces.stream().filter(
-                (parkingSpace)->
+    public List<ParkingSpaceDTO> listFreeParkingSpaces() {
+        List<ParkingSpace> parkingSpaces = parkingSpaceRepository.findAll();
+        List<ParkingSpace> freeParkingSpaces = parkingSpaces.stream().filter(
+                (parkingSpace) ->
                         reservationRepository.findByParkingSpace(parkingSpace).isEmpty()
         ).collect(Collectors.toList());
         ParkingSpaceMapper parkingSpaceMapper = new ParkingSpaceMapper();

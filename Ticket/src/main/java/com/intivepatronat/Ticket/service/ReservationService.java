@@ -2,7 +2,6 @@ package com.intivepatronat.Ticket.service;
 
 import com.intivepatronat.Ticket.dto.ReservationDTO;
 import com.intivepatronat.Ticket.dto.ReservationDetailsDTO;
-import com.intivepatronat.Ticket.dto.UserDTO;
 import com.intivepatronat.Ticket.mapper.ReservationMapper;
 import com.intivepatronat.Ticket.model.ParkingSpace;
 import com.intivepatronat.Ticket.model.Reservation;
@@ -13,6 +12,7 @@ import com.intivepatronat.Ticket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +28,6 @@ public class ReservationService {
         this.userRepository = userRepository;
         this.parkingSpaceRepository = parkingSpaceRepository;
     }
-
 
 
     public ReservationDTO createReservation(final ReservationDTO reservationDTO) {
@@ -67,11 +66,6 @@ public class ReservationService {
         );
 
 
-        //ParkingSpace parkingSpace = parkingSpaceRepository.findByNumberAndLevel(reservationRemovalDTO.getNumber(), reservationRemovalDTO.getLevel()).orElseThrow(() ->
-
-
-        //new IllegalArgumentException("There is no such combination of parking space number and parking space level/elevation found in the database"));
-
         reservationRepository.delete(reservation);
     }
 
@@ -84,6 +78,21 @@ public class ReservationService {
         ReservationMapper reservationMapper = new ReservationMapper();
         List<Reservation> reservations = reservationRepository.findAllByUser(user);
         return reservationMapper.mapToReservationDetailsDTOs(reservations);
+
+    }
+
+
+    public List<ReservationDetailsDTO> listAllReservations() {
+        List<Reservation> reservations = reservationRepository.findAll();
+        List<ReservationDetailsDTO> reservationDetailsDTOs = new ArrayList<ReservationDetailsDTO>();
+        reservations.forEach(reservation -> {
+                    ReservationDetailsDTO reservationListDTO = new ReservationDetailsDTO(reservation.getUser().getName(), reservation.getId(), reservation.getParkingSpace().getNumber(), reservation.getParkingSpace().isImpaired(), reservation.getParkingSpace().getLevel());
+                    reservationDetailsDTOs.add(reservationListDTO);
+                }
+
+        );
+        return reservationDetailsDTOs;
+
 
     }
 

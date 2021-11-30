@@ -14,12 +14,11 @@ public class ReservationMapper {
 
         if (!CollectionUtils.isEmpty(reservations)) {
             reservations.forEach(reservation -> {
-                        ReservationDetailsDTO reservationDetailsDTO = new ReservationDetailsDTO(reservation.getUser().getName(), reservation.getParkingSpace().getNumber(), reservation.getParkingSpace().getLevel(), reservation.getParkingSpace().isImpaired());
-                        reservationDetailsDTOs.add(reservationDetailsDTO);
+                ReservationDetailsDTO reservationDetailsDTO = new ReservationDetailsDTO(reservation.getUser().getName(), reservation.getParkingSpace().getNumber(), reservation.getParkingSpace().getLevel(), reservation.getParkingSpace().isImpaired(), reservation.getId());
+                reservationDetailsDTOs.add(reservationDetailsDTO);
 
 
-
-                    });
+            });
         }
 
         return reservationDetailsDTOs;

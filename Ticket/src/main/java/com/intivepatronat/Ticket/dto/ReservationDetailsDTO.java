@@ -5,12 +5,14 @@ public class ReservationDetailsDTO {
     private Long parkingSpaceNumber;
     private Long parkingSpaceLevel;
     private Boolean parkingSpaceImpaired;
+    private Long id;
 
-    public ReservationDetailsDTO(String userName, Long parkingSpaceNumber, Long parkingSpaceLevel, Boolean parkingSpaceImpaired) {
+    public ReservationDetailsDTO(String userName, Long parkingSpaceNumber, Long parkingSpaceLevel, Boolean parkingSpaceImpaired, Long id) {
         this.userName = userName;
         this.parkingSpaceNumber = parkingSpaceNumber;
         this.parkingSpaceLevel = parkingSpaceLevel;
         this.parkingSpaceImpaired = parkingSpaceImpaired;
+        this.id = id;
     }
 
     public String getUserName() {
@@ -25,8 +27,10 @@ public class ReservationDetailsDTO {
         return parkingSpaceLevel;
     }
 
-    public Boolean getParkingSpaceImpaired() {
-        return parkingSpaceImpaired;
+    public Boolean getParkingSpaceImpaired() { return parkingSpaceImpaired; }
+
+    public Long getid() {
+        return id;
     }
 
     public void setUserName(String userName) {

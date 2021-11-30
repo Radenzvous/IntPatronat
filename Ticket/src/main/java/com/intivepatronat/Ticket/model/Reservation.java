@@ -10,7 +10,6 @@ public class Reservation {
     private long id;
 
 
-
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
@@ -18,7 +17,9 @@ public class Reservation {
     @JoinColumn(name = "parkingSpaceId")
     private ParkingSpace parkingSpace;
 
-    public Reservation(){}
+    public Reservation() {
+    }
+
     public Reservation(User user, ParkingSpace parkingSpace) {
         this.user = user;
         this.parkingSpace = parkingSpace;
@@ -38,7 +39,6 @@ public class Reservation {
     public ParkingSpace getParkingSpace() {
         return parkingSpace;
     }
-
 
 
     public void setParkingSpace(ParkingSpace parkingSpace) {

@@ -12,7 +12,8 @@ public class ParkingSpace {
     private long level;
     private boolean impaired;
 
-    public ParkingSpace(){}
+    public ParkingSpace() {
+    }
 
     public ParkingSpace(long number, long level, boolean impaired) {
         this.number = number;

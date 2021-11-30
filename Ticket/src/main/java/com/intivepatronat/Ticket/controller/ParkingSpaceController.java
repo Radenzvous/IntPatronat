@@ -28,10 +28,11 @@ public class ParkingSpaceController {
         final var response = parkingSpaceService.createParkingSpace(parkingSpaceDTO);
         return ResponseEntity.status(CREATED).body(response);
 
-}
+    }
+
     @GetMapping("/free")
-    public ResponseEntity<List<ParkingSpaceDTO>> listFreeParkingSpaces(){
-        List <ParkingSpaceDTO> parkingSpaces = parkingSpaceService.listFreeParkingSpaces();
+    public ResponseEntity<List<ParkingSpaceDTO>> listFreeParkingSpaces() {
+        List<ParkingSpaceDTO> parkingSpaces = parkingSpaceService.listFreeParkingSpaces();
         return ResponseEntity.status(OK).body(parkingSpaces);
 
 

@@ -31,25 +31,30 @@ public class ReservationController {
         final var response = reservationService.createReservation(userReservationDTO);
         return ResponseEntity.status(CREATED).body(response);
     }
+
     @DeleteMapping("/{reservationId}")
     public ResponseEntity<Void> deleteReservation(
-    @PathVariable
-    final Long reservationId){
+            @PathVariable final Long reservationId) {
         reservationService.removeReservation(reservationId);
         return ResponseEntity.status(OK).body(null);
 
     }
 
-    @GetMapping("/user/{userName}")
-    public ResponseEntity<List<ReservationDetailsDTO>> listReservationsByUserName(
-    @PathVariable
-    final String userName){
-        List <ReservationDetailsDTO> reservations = reservationService.listReservationsByUserName(userName);
+    @GetMapping
+    public ResponseEntity<List<ReservationDetailsDTO>> listAllReservations() {
+        List<ReservationDetailsDTO> reservations = reservationService.listAllReservations();
         return ResponseEntity.status(OK).body(reservations);
-
 
     }
 
+
+    @GetMapping("/user/{userName}")
+    public ResponseEntity<List<ReservationDetailsDTO>> listReservationsByUserName(
+            @PathVariable final String userName) {
+        List<ReservationDetailsDTO> reservations = reservationService.listReservationsByUserName(userName);
+        return ResponseEntity.status(OK).body(reservations);
+
+    }
 
 
 }
