@@ -3,6 +3,7 @@ Intive Patronat Java task
 
 ## Parking Space Mapper
 This application allows you to map parking spaces, add users and add reservations.
+It also allows you to remove reservations, show all reservations for a single user and show all free parking spaces.
 
 ## Technologies
 
