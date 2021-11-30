@@ -33,7 +33,7 @@ gradlew bootRun
 
 ## REST urls -- Usage of the application
 
-1. POST http://localhost:8080/reservation
+## 1. POST http://localhost:8080/reservation
 
 curl -XPOST -H "Content-type: application/json" -d '{"userName": "toster1","parkingSpaceNumber": 2,"parkingSpaceLevel": 2}' 'http://localhost:8080/reservation'
 
@@ -47,7 +47,7 @@ JSON Body:
 What does it do?
 Creates a reservation for already preexisting user and parkingspace.
 
-2. POST http://localhost:8080/parking-space
+## 2. POST http://localhost:8080/parking-space
 
   curl -XPOST -H "Content-type: application/json" -d '{"number":3,"level": 3,"impaired" : true}' 'http://localhost:8080/parking-space'
 
@@ -61,7 +61,7 @@ JSON Body
 What does it do?
 Creates a parking space.
 
-3. POST http://localhost:8080/user
+## 3. POST http://localhost:8080/user
 
   curl -XPOST -H "Content-type: application/json" -d '{"name": "<username>"}' 'http://localhost:8080/user'
 
@@ -74,21 +74,21 @@ What does it do?
 Creates a user.
 
 
-4. GET http://localhost:8080/reservation/user/{userName}
+## 4. GET http://localhost:8080/reservation/user/{userName}
 
   curl -XGET 'http://localhost:8080/reservation/user/{userName}'
 
 What does it do?
 Username needs to be fed to {userName}, output will show every reservation assigned to that user.
 
-5. GET http://localhost:8080/parking-space/free
+## 5. GET http://localhost:8080/parking-space/free
 
   curl -XGET 'http://localhost:8080/parking-space/free'
 
 What does it do?
 Show all unassigned parking spaces.
 
-6. DELETE http://localhost:8080/reservation/{reservationId}
+## 6. DELETE http://localhost:8080/reservation/{reservationId}
 
   curl -XDELETE 'http://localhost:8080/reservation/1'
 
@@ -100,7 +100,7 @@ What does it do?
 Reservation Id needs to be fed to {reservationId}.
 Removes reservation.
 
-7. GET http://localhost:8080/reservation
+## 7. GET http://localhost:8080/reservation
 
   curl -XGET 'http://localhost:8080/reservation'
 
