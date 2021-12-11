@@ -2,6 +2,10 @@ package com.intivepatronat.Ticket.service;
 
 import com.intivepatronat.Ticket.dto.ReservationDTO;
 import com.intivepatronat.Ticket.dto.ReservationDetailsDTO;
+import com.intivepatronat.Ticket.exception.ParkingSpaceNotFoundException;
+import com.intivepatronat.Ticket.exception.ReservationNotFoundException;
+import com.intivepatronat.Ticket.exception.ReservationTakenException;
+import com.intivepatronat.Ticket.exception.ReservationUserNotFoundException;
 import com.intivepatronat.Ticket.mapper.ReservationMapper;
 import com.intivepatronat.Ticket.model.ParkingSpace;
 import com.intivepatronat.Ticket.model.Reservation;

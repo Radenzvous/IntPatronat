@@ -1,4 +1,4 @@
-package com.intivepatronat.Ticket.service;
+package com.intivepatronat.Ticket.exception;
 
 public class ReservationTakenException extends RuntimeException {
     public ReservationTakenException(final String errorMessage) {

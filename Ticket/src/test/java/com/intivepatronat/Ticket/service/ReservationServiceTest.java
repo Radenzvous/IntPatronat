@@ -1,5 +1,6 @@
 package com.intivepatronat.Ticket.service;
 
+import com.intivepatronat.Ticket.exception.ReservationNotFoundException;
 import com.intivepatronat.Ticket.repository.ParkingSpaceRepository;
 import com.intivepatronat.Ticket.repository.ReservationRepository;
 import com.intivepatronat.Ticket.repository.UserRepository;

@@ -1,6 +1,8 @@
 package com.intivepatronat.Ticket.service;
 
 import com.intivepatronat.Ticket.dto.UserDTO;
+import com.intivepatronat.Ticket.exception.UserAlreadyExistsException;
+import com.intivepatronat.Ticket.exception.UserNotFoundException;
 import com.intivepatronat.Ticket.model.User;
 import com.intivepatronat.Ticket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package com.intivepatronat.Ticket.service;
 
 import com.intivepatronat.Ticket.dto.ParkingSpaceDTO;
+import com.intivepatronat.Ticket.exception.ParkingSpaceAlreadyExistsException;
 import com.intivepatronat.Ticket.mapper.ParkingSpaceMapper;
 import com.intivepatronat.Ticket.model.ParkingSpace;
 import com.intivepatronat.Ticket.repository.ParkingSpaceRepository;
