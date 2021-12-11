@@ -19,28 +19,19 @@ public class UserService {
     }
 
     public UserDTO createUser(final UserDTO userDTO) {
-
-
         final Optional<User> user = userRepository.findByName(userDTO.getName());
         if (user.isEmpty()) {
             final User newUser = new User(userDTO.getName());
             userRepository.save(newUser);
-
         } else {
-
             throw new UserAlreadyExistsException("Error - user already exists in the database");
         }
-
-
         return userDTO;
     }
 
     public void removeUser(final String userName) {
         final User user = userRepository.findByName(userName).orElseThrow(() ->
-
-
                 new UserNotFoundException("There is no such user found in the database")
-
         );
 
 
