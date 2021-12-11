@@ -1,8 +1,8 @@
 package com.intivepatronat.Ticket.dto;
 
-public final class ReservationRemovalDTO {
-    private Long number;
-    private Long level;
+public class ReservationRemovalDTO {
+    private final Long number;
+    private final Long level;
 
 
     private ReservationRemovalDTO(Long number, Long level) {
@@ -16,14 +16,6 @@ public final class ReservationRemovalDTO {
 
     public Long getLevel() {
         return level;
-    }
-
-    public void setNumber(Long number) {
-        this.number = number;
-    }
-
-    public void setLevel(Long level) {
-        this.level = level;
     }
 
 

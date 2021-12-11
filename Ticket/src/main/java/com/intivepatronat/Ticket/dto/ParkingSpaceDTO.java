@@ -1,12 +1,12 @@
 package com.intivepatronat.Ticket.dto;
 
-public final class ParkingSpaceDTO {
-    private Long number;
-    private Long level;
-    private Boolean impaired;
+public class ParkingSpaceDTO {
+    private final Long number;
+    private final Long level;
+    private final Boolean impaired;
 
 
-    public ParkingSpaceDTO(Long number, Long level, Boolean impaired) {
+    public ParkingSpaceDTO(final Long number, final Long level, final Boolean impaired) {
         this.number = number;
         this.level = level;
         this.impaired = impaired;
@@ -24,15 +24,4 @@ public final class ParkingSpaceDTO {
         return impaired;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
-    }
-
-    public void setLevel(Long level) {
-        this.level = level;
-    }
-
-    public void setImpaired(Boolean impaired) {
-        this.impaired = impaired;
-    }
 }

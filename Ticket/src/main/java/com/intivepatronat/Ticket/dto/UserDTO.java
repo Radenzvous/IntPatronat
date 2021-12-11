@@ -3,7 +3,7 @@ package com.intivepatronat.Ticket.dto;
 
 import javax.validation.constraints.Pattern;
 
-public final class UserDTO {
+public class UserDTO {
     @Pattern.List({
             @Pattern(regexp = "^[\\s\\S]{2,20}", message = "Invalid characters"),
             @Pattern(regexp = "(?!(?:(\\s)\\1*$)$).*", message = "Username cannot be only whitespaces")
@@ -13,7 +13,7 @@ public final class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String name) {
+    public UserDTO(final String name) {
         this.name = name;
     }
 
@@ -21,7 +21,4 @@ public final class UserDTO {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

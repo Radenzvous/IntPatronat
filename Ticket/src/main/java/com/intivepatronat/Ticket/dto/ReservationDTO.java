@@ -1,9 +1,9 @@
 package com.intivepatronat.Ticket.dto;
 
-public final class ReservationDTO {
-    private String userName;
-    private Long parkingSpaceNumber;
-    private Long parkingSpaceLevel;
+public class ReservationDTO {
+    private final String userName;
+    private final Long parkingSpaceNumber;
+    private final Long parkingSpaceLevel;
 
 
     private ReservationDTO(String userName, Long parkingSpaceNumber, Long parkingSpaceLevel) {
@@ -23,19 +23,6 @@ public final class ReservationDTO {
 
     public Long getParkingSpaceLevel() {
         return parkingSpaceLevel;
-    }
-
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setParkingSpaceNumber(Long parkingSpaceNumber) {
-        this.parkingSpaceNumber = parkingSpaceNumber;
-    }
-
-    public void setParkingSpaceLevel(Long parkingSpaceLevel) {
-        this.parkingSpaceLevel = parkingSpaceLevel;
     }
 
 
