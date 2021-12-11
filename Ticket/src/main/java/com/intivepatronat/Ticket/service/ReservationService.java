@@ -26,7 +26,7 @@ public class ReservationService {
     private final UserRepository userRepository;
     private final ParkingSpaceRepository parkingSpaceRepository;
 
-    @Autowired
+
     public ReservationService(ReservationRepository reservationRepository, UserRepository userRepository, ParkingSpaceRepository parkingSpaceRepository) {
         this.reservationRepository = reservationRepository;
         this.userRepository = userRepository;
