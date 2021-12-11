@@ -6,7 +6,7 @@ public class ReservationDTO {
     private final Long parkingSpaceLevel;
 
 
-    private ReservationDTO(String userName, Long parkingSpaceNumber, Long parkingSpaceLevel) {
+    private ReservationDTO(final String userName, final Long parkingSpaceNumber, final Long parkingSpaceLevel) {
         this.userName = userName;
         this.parkingSpaceNumber = parkingSpaceNumber;
         this.parkingSpaceLevel = parkingSpaceLevel;

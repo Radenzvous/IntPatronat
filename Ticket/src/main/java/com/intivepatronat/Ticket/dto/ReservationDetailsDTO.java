@@ -7,7 +7,7 @@ public class ReservationDetailsDTO {
     private final Boolean parkingSpaceImpaired;
     private final Long id;
 
-    public ReservationDetailsDTO(final String userName, final Long parkingSpaceNumber, final Long parkingSpaceLevel, final Boolean parkingSpaceImpaired, Long id) {
+    public ReservationDetailsDTO(final String userName, final Long parkingSpaceNumber, final Long parkingSpaceLevel, final Boolean parkingSpaceImpaired, final Long id) {
         this.userName = userName;
         this.parkingSpaceNumber = parkingSpaceNumber;
         this.parkingSpaceLevel = parkingSpaceLevel;

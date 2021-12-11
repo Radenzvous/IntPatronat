@@ -5,7 +5,7 @@ public class ReservationRemovalDTO {
     private final Long level;
 
 
-    private ReservationRemovalDTO(Long number, Long level) {
+    private ReservationRemovalDTO(final Long number, final Long level) {
         this.number = number;
         this.level = level;
     }
