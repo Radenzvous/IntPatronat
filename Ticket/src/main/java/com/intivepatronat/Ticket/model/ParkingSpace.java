@@ -15,7 +15,7 @@ public class ParkingSpace {
     public ParkingSpace() {
     }
 
-    public ParkingSpace(long number, long level, boolean impaired) {
+    public ParkingSpace(final long number, final long level, final boolean impaired) {
         this.number = number;
         this.level = level;
         this.impaired = impaired;
@@ -37,15 +37,15 @@ public class ParkingSpace {
         return impaired;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(final int number) {
         this.number = number;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(final int level) {
         this.level = level;
     }
 
-    public void setImpaired(boolean impaired) {
+    public void setImpaired(final boolean impaired) {
         this.impaired = impaired;
     }
 }

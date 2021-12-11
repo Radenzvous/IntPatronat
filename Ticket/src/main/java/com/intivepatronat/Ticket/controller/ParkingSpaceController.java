@@ -17,7 +17,7 @@ public class ParkingSpaceController {
     private final ParkingSpaceService parkingSpaceService;
 
 
-    public ParkingSpaceController(ParkingSpaceService parkingSpaceService) {
+    public ParkingSpaceController(final ParkingSpaceService parkingSpaceService) {
         this.parkingSpaceService = parkingSpaceService;
     }
 
@@ -32,7 +32,7 @@ public class ParkingSpaceController {
 
     @GetMapping("/free")
     public ResponseEntity<List<ParkingSpaceDTO>> listFreeParkingSpaces() {
-        List<ParkingSpaceDTO> parkingSpaces = parkingSpaceService.listFreeParkingSpaces();
+        final List<ParkingSpaceDTO> parkingSpaces = parkingSpaceService.listFreeParkingSpaces();
         return ResponseEntity.status(OK).body(parkingSpaces);
 
 

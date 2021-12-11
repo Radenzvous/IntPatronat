@@ -14,16 +14,16 @@ public class UserService {
     private final UserRepository userRepository;
 
 
-    public UserService(UserRepository userRepository) {
+    public UserService(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     public UserDTO createUser(final UserDTO userDTO) {
 
 
-        Optional<User> user = userRepository.findByName(userDTO.getName());
+        final Optional<User> user = userRepository.findByName(userDTO.getName());
         if (user.isEmpty()) {
-            User newUser = new User(userDTO.getName());
+            final User newUser = new User(userDTO.getName());
             userRepository.save(newUser);
 
         } else {
@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public void removeUser(final String userName) {
-        User user = userRepository.findByName(userName).orElseThrow(() ->
+        final User user = userRepository.findByName(userName).orElseThrow(() ->
 
 
                 new UserNotFoundException("There is no such user found in the database")

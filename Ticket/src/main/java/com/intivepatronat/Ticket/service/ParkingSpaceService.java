@@ -6,7 +6,6 @@ import com.intivepatronat.Ticket.mapper.ParkingSpaceMapper;
 import com.intivepatronat.Ticket.model.ParkingSpace;
 import com.intivepatronat.Ticket.repository.ParkingSpaceRepository;
 import com.intivepatronat.Ticket.repository.ReservationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class ParkingSpaceService {
     private final ParkingSpaceRepository parkingSpaceRepository;
 
 
-    public ParkingSpaceService(ReservationRepository reservationRepository, ParkingSpaceRepository parkingSpaceRepository) {
+    public ParkingSpaceService(final ReservationRepository reservationRepository, final ParkingSpaceRepository parkingSpaceRepository) {
         this.reservationRepository = reservationRepository;
         this.parkingSpaceRepository = parkingSpaceRepository;
     }
@@ -29,25 +28,25 @@ public class ParkingSpaceService {
 
     public ParkingSpaceDTO createParkingSpace(final ParkingSpaceDTO parkingSpaceDTO) {
 
-        Optional<ParkingSpace> parkingSpace = parkingSpaceRepository.findByNumberAndLevel(parkingSpaceDTO.getNumber(), parkingSpaceDTO.getLevel());
+        final Optional<ParkingSpace> parkingSpace = parkingSpaceRepository.findByNumberAndLevel(parkingSpaceDTO.getNumber(), parkingSpaceDTO.getLevel());
 
 
         if (parkingSpace.isPresent()) {
             throw new ParkingSpaceAlreadyExistsException("Parking space number and level already exist in the database");
         } else {
-            ParkingSpace newParkingSpace = new ParkingSpace(parkingSpaceDTO.getNumber(), parkingSpaceDTO.getLevel(), parkingSpaceDTO.getImpaired());
+            final ParkingSpace newParkingSpace = new ParkingSpace(parkingSpaceDTO.getNumber(), parkingSpaceDTO.getLevel(), parkingSpaceDTO.getImpaired());
             parkingSpaceRepository.save(newParkingSpace);
         }
         return parkingSpaceDTO;
     }
 
     public List<ParkingSpaceDTO> listFreeParkingSpaces() {
-        List<ParkingSpace> parkingSpaces = parkingSpaceRepository.findAll();
-        List<ParkingSpace> freeParkingSpaces = parkingSpaces.stream().filter(
+        final List<ParkingSpace> parkingSpaces = parkingSpaceRepository.findAll();
+        final List<ParkingSpace> freeParkingSpaces = parkingSpaces.stream().filter(
                 (parkingSpace) ->
                         reservationRepository.findByParkingSpace(parkingSpace).isEmpty()
         ).collect(Collectors.toList());
-        ParkingSpaceMapper parkingSpaceMapper = new ParkingSpaceMapper();
+        final ParkingSpaceMapper parkingSpaceMapper = new ParkingSpaceMapper();
         return parkingSpaceMapper.mapToParkingSpaceDTOs(freeParkingSpaces);
 
     }

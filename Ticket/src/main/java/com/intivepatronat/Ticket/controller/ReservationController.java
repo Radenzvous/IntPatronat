@@ -20,7 +20,7 @@ public class ReservationController {
     private final String statusMessageSuccess = "Successfully created the thing";
     private final ReservationService reservationService;
 
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(final ReservationService reservationService) {
         this.reservationService = reservationService;
     }
 
@@ -42,7 +42,7 @@ public class ReservationController {
 
     @GetMapping
     public ResponseEntity<List<ReservationDetailsDTO>> listAllReservations() {
-        List<ReservationDetailsDTO> reservations = reservationService.listAllReservations();
+        final List<ReservationDetailsDTO> reservations = reservationService.listAllReservations();
         return ResponseEntity.status(OK).body(reservations);
 
     }
@@ -51,7 +51,7 @@ public class ReservationController {
     @GetMapping("/user/{userName}")
     public ResponseEntity<List<ReservationDetailsDTO>> listReservationsByUserName(
             @PathVariable final String userName) {
-        List<ReservationDetailsDTO> reservations = reservationService.listReservationsByUserName(userName);
+        final List<ReservationDetailsDTO> reservations = reservationService.listReservationsByUserName(userName);
         return ResponseEntity.status(OK).body(reservations);
 
     }

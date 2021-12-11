@@ -1,6 +1,6 @@
 package com.intivepatronat.Ticket.dto;
 
-public class ParkingSpaceDTO {
+public final class ParkingSpaceDTO {
     private Long number;
     private Long level;
     private Boolean impaired;

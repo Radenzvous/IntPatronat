@@ -20,12 +20,12 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(User user, ParkingSpace parkingSpace) {
+    public Reservation(final User user, final ParkingSpace parkingSpace) {
         this.user = user;
         this.parkingSpace = parkingSpace;
     }
 
-    public Reservation(Long parkingSpaceNumber) {
+    public Reservation(final Long parkingSpaceNumber) {
     }
 
     public long getId() {
@@ -41,11 +41,12 @@ public class Reservation {
     }
 
 
-    public void setParkingSpace(ParkingSpace parkingSpace) {
+    public void setParkingSpace(final ParkingSpace parkingSpace) {
         this.parkingSpace = parkingSpace;
     }
 
-    public void setUser(User user) {
+
+    public void setUser(final User user) {
         this.user = user;
     }
 }

@@ -14,7 +14,7 @@ public class ParkingSpaceMapper {
 
         if (!CollectionUtils.isEmpty(parkingSpaces)) {
             parkingSpaces.forEach(parkingSpace -> {
-                ParkingSpaceDTO parkingSpaceDTO = new ParkingSpaceDTO(parkingSpace.getNumber(), parkingSpace.getLevel(), parkingSpace.isImpaired());
+                final ParkingSpaceDTO parkingSpaceDTO = new ParkingSpaceDTO(parkingSpace.getNumber(), parkingSpace.getLevel(), parkingSpace.isImpaired());
                 parkingSpaceDTOs.add(parkingSpaceDTO);
 
 

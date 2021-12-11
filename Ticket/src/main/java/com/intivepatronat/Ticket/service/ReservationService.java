@@ -13,7 +13,6 @@ import com.intivepatronat.Ticket.model.User;
 import com.intivepatronat.Ticket.repository.ParkingSpaceRepository;
 import com.intivepatronat.Ticket.repository.ReservationRepository;
 import com.intivepatronat.Ticket.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class ReservationService {
     private final ParkingSpaceRepository parkingSpaceRepository;
 
 
-    public ReservationService(ReservationRepository reservationRepository, UserRepository userRepository, ParkingSpaceRepository parkingSpaceRepository) {
+    public ReservationService(final ReservationRepository reservationRepository, final UserRepository userRepository, final ParkingSpaceRepository parkingSpaceRepository) {
         this.reservationRepository = reservationRepository;
         this.userRepository = userRepository;
         this.parkingSpaceRepository = parkingSpaceRepository;
@@ -36,23 +35,23 @@ public class ReservationService {
 
     public ReservationDTO createReservation(final ReservationDTO reservationDTO) {
 
-        User user = userRepository.findByName(reservationDTO.getUserName()).orElseThrow(() ->
+        final User user = userRepository.findByName(reservationDTO.getUserName()).orElseThrow(() ->
 
                 new ReservationUserNotFoundException("This user was not found in the database"));
 
 
-        ParkingSpace parkingSpace = parkingSpaceRepository.findByNumberAndLevel(reservationDTO.getParkingSpaceNumber(), reservationDTO.getParkingSpaceLevel()).orElseThrow(() ->
+        final ParkingSpace parkingSpace = parkingSpaceRepository.findByNumberAndLevel(reservationDTO.getParkingSpaceNumber(), reservationDTO.getParkingSpaceLevel()).orElseThrow(() ->
 
                 new ParkingSpaceNotFoundException("Parking space not found in the database"));
 
-        Optional<Reservation> reservation = reservationRepository.findByParkingSpace(parkingSpace);
+        final Optional<Reservation> reservation = reservationRepository.findByParkingSpace(parkingSpace);
 
 
         if (reservation.isPresent()) {
             throw new ReservationTakenException("This reservation already exists");
         } else {
 
-            Reservation newReservation = new Reservation(user, parkingSpace);
+            final Reservation newReservation = new Reservation(user, parkingSpace);
             reservationRepository.save(newReservation);
         }
         return reservationDTO;
@@ -62,7 +61,7 @@ public class ReservationService {
 
 
     public void removeReservation(final Long reservationId) {
-        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow(() ->
+        final Reservation reservation = reservationRepository.findById(reservationId).orElseThrow(() ->
 
 
                 new ReservationNotFoundException("There is no such reservation found in the database")
@@ -75,22 +74,22 @@ public class ReservationService {
 
 
     public List<ReservationDetailsDTO> listReservationsByUserName(final String userName) {
-        User user = userRepository.findByName(userName).orElseThrow(() ->
+        final User user = userRepository.findByName(userName).orElseThrow(() ->
                 new ReservationUserNotFoundException("This user was not found in the database")
         );
 
-        ReservationMapper reservationMapper = new ReservationMapper();
-        List<Reservation> reservations = reservationRepository.findAllByUser(user);
+        final ReservationMapper reservationMapper = new ReservationMapper();
+        final List<Reservation> reservations = reservationRepository.findAllByUser(user);
         return reservationMapper.mapToReservationDetailsDTOs(reservations);
 
     }
 
 
     public List<ReservationDetailsDTO> listAllReservations() {
-        List<Reservation> reservations = reservationRepository.findAll();
-        List<ReservationDetailsDTO> reservationDetailsDTOs = new ArrayList<ReservationDetailsDTO>();
+        final List<Reservation> reservations = reservationRepository.findAll();
+        final List<ReservationDetailsDTO> reservationDetailsDTOs = new ArrayList<ReservationDetailsDTO>();
         reservations.forEach(reservation -> {
-                    ReservationDetailsDTO reservationListDTO = new ReservationDetailsDTO(reservation.getUser().getName(), reservation.getId(), reservation.getParkingSpace().getNumber(), reservation.getParkingSpace().isImpaired(), reservation.getParkingSpace().getLevel());
+                    final ReservationDetailsDTO reservationListDTO = new ReservationDetailsDTO(reservation.getUser().getName(), reservation.getId(), reservation.getParkingSpace().getNumber(), reservation.getParkingSpace().isImpaired(), reservation.getParkingSpace().getLevel());
                     reservationDetailsDTOs.add(reservationListDTO);
                 }
 
