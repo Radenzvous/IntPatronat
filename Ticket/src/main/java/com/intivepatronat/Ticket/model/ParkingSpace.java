@@ -1,9 +1,12 @@
 package com.intivepatronat.Ticket.model;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 @Entity
 @Table
+@Getter
 public class ParkingSpace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,31 +24,4 @@ public class ParkingSpace {
         this.impaired = impaired;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public long getNumber() {
-        return number;
-    }
-
-    public long getLevel() {
-        return level;
-    }
-
-    public boolean isImpaired() {
-        return impaired;
-    }
-
-    public void setNumber(final int number) {
-        this.number = number;
-    }
-
-    public void setLevel(final int level) {
-        this.level = level;
-    }
-
-    public void setImpaired(final boolean impaired) {
-        this.impaired = impaired;
-    }
 }

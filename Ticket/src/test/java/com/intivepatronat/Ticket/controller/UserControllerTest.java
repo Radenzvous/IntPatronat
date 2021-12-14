@@ -20,6 +20,7 @@ public class UserControllerTest {
     private final TestRestTemplate restTemplate = new TestRestTemplate();
     private final HttpHeaders headers = new HttpHeaders();
 
+
     @Test
     public void saveUser_shouldCreateUser() throws Exception {
         final HttpEntity<UserDTO> entity = new HttpEntity<>(new UserDTO("Test"), headers);

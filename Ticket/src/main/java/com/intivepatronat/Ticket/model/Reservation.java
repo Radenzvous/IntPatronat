@@ -1,9 +1,13 @@
 package com.intivepatronat.Ticket.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
-
+@Getter
+@Setter
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,25 +32,6 @@ public class Reservation {
     public Reservation(final Long parkingSpaceNumber) {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public ParkingSpace getParkingSpace() {
-        return parkingSpace;
-    }
 
 
-    public void setParkingSpace(final ParkingSpace parkingSpace) {
-        this.parkingSpace = parkingSpace;
-    }
-
-
-    public void setUser(final User user) {
-        this.user = user;
-    }
 }

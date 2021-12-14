@@ -6,6 +6,7 @@ import com.intivepatronat.Ticket.service.ParkingSpaceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -24,7 +25,7 @@ public class ParkingSpaceController {
 
     @PostMapping
     public ResponseEntity<ParkingSpaceDTO> saveParkingSpace(
-            @RequestBody final ParkingSpaceDTO parkingSpaceDTO) {
+            @RequestBody @Valid final ParkingSpaceDTO parkingSpaceDTO) {
         final var response = parkingSpaceService.createParkingSpace(parkingSpaceDTO);
         return ResponseEntity.status(CREATED).body(response);
 

@@ -1,22 +1,12 @@
 package com.intivepatronat.Ticket.dto;
 
+import lombok.Value;
+
+@Value
 public class ReservationRemovalDTO {
-    private final Long number;
-    private final Long level;
+    Long number;
+    Long level;
 
-
-    private ReservationRemovalDTO(final Long number, final Long level) {
-        this.number = number;
-        this.level = level;
-    }
-
-    public Long getNumber() {
-        return number;
-    }
-
-    public Long getLevel() {
-        return level;
-    }
 
 
 }

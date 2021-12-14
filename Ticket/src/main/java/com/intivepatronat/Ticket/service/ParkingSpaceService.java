@@ -6,6 +6,7 @@ import com.intivepatronat.Ticket.mapper.ParkingSpaceMapper;
 import com.intivepatronat.Ticket.model.ParkingSpace;
 import com.intivepatronat.Ticket.repository.ParkingSpaceRepository;
 import com.intivepatronat.Ticket.repository.ReservationRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,17 +14,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ParkingSpaceService {
 
 
     private final ReservationRepository reservationRepository;
     private final ParkingSpaceRepository parkingSpaceRepository;
-
-
-    public ParkingSpaceService(final ReservationRepository reservationRepository, final ParkingSpaceRepository parkingSpaceRepository) {
-        this.reservationRepository = reservationRepository;
-        this.parkingSpaceRepository = parkingSpaceRepository;
-    }
 
 
     public ParkingSpaceDTO createParkingSpace(final ParkingSpaceDTO parkingSpaceDTO) {

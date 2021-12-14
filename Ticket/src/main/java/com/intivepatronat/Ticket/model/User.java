@@ -1,11 +1,14 @@
 package com.intivepatronat.Ticket.model;
 
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table
+@Getter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,16 +24,4 @@ public class User {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-
-    public void setName(final String name) {
-        this.name = name;
-    }
 }

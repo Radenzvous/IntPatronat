@@ -1,27 +1,18 @@
 package com.intivepatronat.Ticket.dto;
 
+
+import lombok.Value;
+
+import javax.validation.constraints.Min;
+
+
+@Value
 public class ParkingSpaceDTO {
-    private final Long number;
-    private final Long level;
-    private final Boolean impaired;
+    @Min(value = 1L, message = "Has to be higher or equal 1")
 
+    Long number;
+    Long level;
+    Boolean impaired;
 
-    public ParkingSpaceDTO(final Long number, final Long level, final Boolean impaired) {
-        this.number = number;
-        this.level = level;
-        this.impaired = impaired;
-    }
-
-    public Long getNumber() {
-        return number;
-    }
-
-    public Long getLevel() {
-        return level;
-    }
-
-    public Boolean getImpaired() {
-        return impaired;
-    }
 
 }
